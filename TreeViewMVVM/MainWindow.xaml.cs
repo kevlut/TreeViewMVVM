@@ -20,9 +20,39 @@ namespace TreeViewMVVM
     /// </summary>
     public partial class MainWindow : Window
     {
+        private ViewModels.MainWindowViewModel mwvm;
         public MainWindow()
         {
             InitializeComponent();
+
+            mwvm = new ViewModels.MainWindowViewModel();
+            this.DataContext = mwvm;
+        }
+
+        private void TreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            if (e.NewValue != null)
+            {
+                mwvm.SelectedItem = e.NewValue;
+            }
+        }
+        int i = 0;
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if(i % 4 == 0)
+            {
+                mwvm.Workspaces.First().Items.Add(new Models.Device() { Header = "Device " + i });
+            }
+            else if (i % 2 == 0)
+            {
+                mwvm.Workspaces.First().Items.Add(new Models.Folder() { Header = "Folder " + i });
+            }
+            else if (i % 3 == 0)
+            {
+                mwvm.Workspaces.First().Items.Add(new Models.Hardware() { Header = "Hardware " + i });
+            }
+            mwvm.Workspaces.First().Items[0].Items.Add(new Models.Folder() { Header = "Folder " + i });
+            i++;
         }
     }
 }

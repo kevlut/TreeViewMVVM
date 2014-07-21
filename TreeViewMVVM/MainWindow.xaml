@@ -53,7 +53,7 @@
                     <TextBlock Text="{Binding Header}" />
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type model:Device}">
-                    <ItemsControl ItemsSource="{Binding Items}" />
+                    <ItemsControl ItemsSource="{Binding Parameters}" />
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type model:Folder}">
                     <TextBlock Text="{Binding Header}" />
